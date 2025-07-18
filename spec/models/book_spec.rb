@@ -1,9 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe Book, type: :model do
-  let!(:book) { create_book(:book, 1) }
 
   # - Valid with all attributes
+  context 'valid attributes' do
+    it 'is valid with all attributes' do
+      book = build(:book)
+      expect(book).to be_valid
+    end
+  end
   # - Invalid without a title
   # - Invalid without an author
   # - Invalid if `read` is nil
