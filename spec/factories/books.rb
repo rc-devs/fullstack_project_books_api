@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :book do
-    title { "MyString" }
-    author { "MyString" }
+    title { Faker::Book.title } # attributes get fake data
+    author { Faker::Book.author }
     read { false }
   end
 end
