@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Book, type: :model do
-  # - Valid with all attributes
 
+  # - Valid with all attributes
   context 'Validation Tests: ' do
     it 'is valid with all attributes' do
       book = build(:book)
