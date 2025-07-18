@@ -1,5 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Book, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  # - Valid with all attributes
+  # - Invalid without a title
+  # - Invalid without an author
+  # - Invalid if `read` is nil
+  # - Add any necessary validations to your Book model to pass these tests.
 end
