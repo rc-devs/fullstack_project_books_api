@@ -1,16 +1,23 @@
 require 'rails_helper'
 
 RSpec.describe Book, type: :model do
-
   # - Valid with all attributes
-  context 'valid attributes' do
+
+  context 'Validation Tests: ' do
     it 'is valid with all attributes' do
       book = build(:book)
       expect(book).to be_valid
     end
   end
-  # - Invalid without a title
-  # - Invalid without an author
-  # - Invalid if `read` is nil
-  # - Add any necessary validations to your Book model to pass these tests.
+
+  context 'invalid attributes' do
+    # - Invalid without a title
+    it 'is invalid without a title' do
+      book = build(:book, title: nil)
+      expect(book).not_to be_valid
+    end
+    # - Invalid without an author
+    # - Invalid if `read` is nil
+    # - Add any necessary validations to your Book model to pass these tests.
+  end
 end
