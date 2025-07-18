@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Book, type: :model do
+  let!(:book) { create_book(:book, 1) }
+
   # - Valid with all attributes
   # - Invalid without a title
   # - Invalid without an author
