@@ -17,7 +17,14 @@ RSpec.describe Book, type: :model do
       expect(book).not_to be_valid
     end
     # - Invalid without an author
+     it 'is invalid without a author' do
+      book = build(:book, author: nil)
+      expect(book).not_to be_valid
+    end
     # - Invalid if `read` is nil
-    # - Add any necessary validations to your Book model to pass these tests.
+     it 'is invalid without a read status' do
+      book = build(:book, read: nil)
+      expect(book).not_to be_valid
+    end
   end
 end
