@@ -11,6 +11,17 @@ RSpec.describe "Books", type: :request do
   end
 
   describe "GET /index" do
+    before do 
+      create_list(:book, 10)
+      get "/books"
+      @body = JSON.parse(response.body)
+    end
+
+    it 'returns books' do
+      @body.each do |book|
+        expect(book.keys).to contain_exactly(*expected_book_structure)
+      end
+    end
   # (index, show, create, update, destroy)
     # - Checking for correct JSON structure
     # - Status codes
