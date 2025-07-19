@@ -42,9 +42,9 @@ RSpec.describe "Books", type: :request do
         @body = JSON.parse(response.body)
       end
 
-      # it 'checks for correct structure' do
-      #   expect(# needs correct).to contain_exactly(*expected_book_structure)
-      # end
+      it 'checks for correct structure' do
+        expect(@body.keys).to contain_exactly(*expected_book_structure.keys)
+      end
 
        it 'returns http status' do
       expect(response).to have_http_status(:success)
