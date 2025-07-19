@@ -78,7 +78,7 @@ RSpec.describe "Books", type: :request do
       let (:book_id) { create(:book) }
 
       before do 
-        put "/books/#{todo_id}", params: { body: 'updated body' }
+        put "/books/#{book_id}", params: { body: 'updated body' }
         @body = JSON.parse(response.body)
       end
 
