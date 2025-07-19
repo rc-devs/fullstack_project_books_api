@@ -22,7 +22,7 @@ RSpec.describe "Books", type: :request do
        @body = JSON.parse(response.body)
     end
 
-    # - Checking for correct JSON structure
+    # - Checking for correct JSON structure 
     it 'returns books' do
       @body.each do |book|
         expect(book.keys).to contain_exactly(*expected_book_structure.keys)
@@ -32,6 +32,7 @@ RSpec.describe "Books", type: :request do
     it 'returns http status' do
       expect(response).to have_http_status(:success)
     end
+  end
 
     # show
     describe "GET /show" do
@@ -50,12 +51,64 @@ RSpec.describe "Books", type: :request do
       expect(response).to have_http_status(:success)
       end
     end
+
     # create
+    describe "POST /create" do
+      before do
+        post "/books", params: attributes_for(:book)
+        @body = JSON.parse(response.body)
+      end
+
+      it 'checks for the correct structure' do
+        expect(@body.keys).to contain_exactly(*expected_book_structure.keys)
+      end
+
+      # - Count changes on create/destroy
+      it 'count of books should increase by 1' do
+        expect(Book.count).to eq(1) # no books in array before creation call
+      end
+
+      it 'returns http success' do
+        expect(response).to have_http_status(:success)
+      end
+    end
+
     # update
+    describe "PUT /update" do
+      let (:book_id) { create(:book) }
+
+      before do 
+        put "/books/#{todo_id}", params: { body: 'updated body' }
+        @body = JSON.parse(response.body)
+      end
+
+      it 'checks for the correct structure ' do
+        expect(body.keys).to contain_exactly(*expected_book_structure.keys)
+      end
+
+      it 'checks if body is updated ' do
+        expect(Book.find(book_id).bod).to eq('updated body') # - Attribute updates on update
+      end
+
+      it "returns http success" do
+        expect(response).to have_http_status(:success)
+      end
+    end
+
     # destroy
-    
-    # - Status codes
-    # - Count changes on create/destroy
-    # - Attribute updates on update
+    describe "delete /destroy" do
+    let (:book_id) { create(:book).id }
+
+    before do
+      delete "/books/#{book_id}"
+    end
+      # - Count changes on destroy
+    it 'decrements the count of books by 1' do
+      expect(Book.count).to eq(0) 
+    end
+
+    it "returns http success" do
+      expect(response).to have_http_status(:success)
+    end
   end
 end
