@@ -10,6 +10,7 @@ RSpec.describe "Books", type: :request do
     }
   end
 
+  # index
   describe "GET /index" do
     before do 
       create_list(:book, 10)
@@ -17,6 +18,7 @@ RSpec.describe "Books", type: :request do
       @body = JSON.parse(response.body)
     end
 
+    # - Checking for correct JSON structure
     it 'returns books' do
       @body.each do |book|
         expect(book.keys).to contain_exactly(*expected_book_structure)
