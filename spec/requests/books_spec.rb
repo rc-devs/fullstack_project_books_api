@@ -28,8 +28,28 @@ RSpec.describe "Books", type: :request do
     it 'returns http status' do
       expect(response).to have_http_status(:success)
     end
-  # (index, show, create, update, destroy)
-    # - Checking for correct JSON structure
+
+    # show
+    describe "GET /show" do
+      let(:book_id) { create(:book).id }
+
+      before do
+        get "/books/#{book_id}"
+        @body = JSON.parse(response.body)
+      end
+
+      it 'checks for correct structure' do
+        expect(response).to contain_exactly(*expected_book_structure)
+      end
+
+       it 'returns http status' do
+      expect(response).to have_http_status(:success)
+      end
+    end
+    # create
+    # update
+    # destroy
+    
     # - Status codes
     # - Count changes on create/destroy
     # - Attribute updates on update
