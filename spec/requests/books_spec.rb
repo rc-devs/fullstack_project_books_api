@@ -22,6 +22,10 @@ RSpec.describe "Books", type: :request do
         expect(book.keys).to contain_exactly(*expected_book_structure)
       end
     end
+
+    it 'returns http status' do
+      expect(response).to have_http_status(:success)
+    end
   # (index, show, create, update, destroy)
     # - Checking for correct JSON structure
     # - Status codes
