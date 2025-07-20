@@ -75,19 +75,19 @@ RSpec.describe "Books", type: :request do
 
     # update
     describe "PUT /update" do
-      let (:book_id) { create(:book) }
+      let (:book_id) { create(:book).id  }
 
       before do 
-        put "/books/#{book_id}", params: { body: 'updated body' }
+        put "/books/#{book_id}", params: { read: true }
         @body = JSON.parse(response.body)
       end
 
       it 'checks for the correct structure ' do
-        expect(body.keys).to contain_exactly(*expected_book_structure.keys)
+        expect(@body.keys).to contain_exactly(*expected_book_structure.keys)
       end
 
       it 'checks if body is updated ' do
-        expect(Book.find(book_id).body).to eq('updated body') # - Attribute updates on update
+        expect(Book.find(book_id).read).to eq(true) # - Attribute updates on update
       end
 
       it "returns http success" do
