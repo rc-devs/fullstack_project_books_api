@@ -69,7 +69,7 @@ RSpec.describe "Books", type: :request do
       end
 
       it 'returns http success' do
-        expect(response).to have_http_status(:success)
+        expect(response).to have_http_status(:created)
       end
     end
 
@@ -87,7 +87,7 @@ RSpec.describe "Books", type: :request do
       end
 
       it 'checks if body is updated ' do
-        expect(Book.find(book_id).bod).to eq('updated body') # - Attribute updates on update
+        expect(Book.find(book_id).body).to eq('updated body') # - Attribute updates on update
       end
 
       it "returns http success" do
