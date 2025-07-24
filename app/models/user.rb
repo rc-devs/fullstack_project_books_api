@@ -1,2 +1,6 @@
 class User < ApplicationRecord
+  has_secure_password # for password hash and stuff
+
+  # validations
+    validates :username, presence: true
 end
