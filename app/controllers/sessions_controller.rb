@@ -9,6 +9,12 @@ class SessionsController < ApplicationController
     end
   end
 
+  def show
+    user = User.find_by(id: params[:id])
+
+    render json: user, status: :ok
+  end
+
   private
   def jwt_encode(payload, exp = 24.hours.from_now)
     payload[:exp] = exp.to_i
