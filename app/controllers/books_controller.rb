@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [ :show, :update, :destroy ]
+  before_action :authenticate_request, only: [ :create ]
 
   def index
     books = Book.all
