@@ -3,4 +3,7 @@ class User < ApplicationRecord
 
   # validations
     validates :username, presence: true
+
+  # associations
+   has_many :books
 end
