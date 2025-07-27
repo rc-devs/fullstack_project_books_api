@@ -45,4 +45,9 @@ class BooksController < ApplicationController
   def book_params
     params.permit(:title, :author, :read)
   end
+
+ # def my_books
+ #   books = @current_user.books
+ #   render json: BookBlueprint.render(books, view: :normal), status: :ok
+ # end
 end
