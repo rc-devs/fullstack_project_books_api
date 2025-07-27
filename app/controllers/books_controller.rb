@@ -31,7 +31,7 @@ class BooksController < ApplicationController
 
   def destroy
     if @book.destroy
-      render json: nil, status: :ok
+      render json: @book, status: :ok
     else
       render json: @book.errors, status: :unprocessable_entity
     end
