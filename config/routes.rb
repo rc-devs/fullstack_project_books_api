@@ -9,9 +9,11 @@ Rails.application.routes.draw do
 
   post "/login", to: "sessions#create"
   resources :users, only: [ :create, :show ]
-  resources :books
-
-  get "/my_books", to: "book-list#my_books"
+  resources :books do
+    collection do
+      get "/my_books", to: "books#my_books"
+    end
+  end
   # Defines the root path route ("/")
   # root "posts#index"
 end
