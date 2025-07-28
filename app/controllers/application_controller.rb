@@ -7,8 +7,10 @@ class ApplicationController < ActionController::API
     @current_user = User.find(decoded["user_id"])
   rescue JWT::ExpiredSignature
     render json: { error: "Token has expired" }, status: :unauthorized
+    return
   rescue JWT::DecodeError => e
     render json: { error: "Unauthorized - #{e.message}" }, status: :unauthorized
+    return
   end
 end
 end
