@@ -37,17 +37,19 @@ class BooksController < ApplicationController
     end
   end
 
+  def my_books
+    books = @current_user.books
+    render json: BookBlueprint.render(books, view: :normal), status: :ok
+  end
+  
   private
   def set_book
     @book = Book.find(params[:id])
   end
 
   def book_params
-    params.permit(:title, :author, :read)
+    params.permit(:title, :author, :read, :user_id)
   end
 
- # def my_books
- #   books = @current_user.books
- #   render json: BookBlueprint.render(books, view: :normal), status: :ok
- # end
+  
 end
