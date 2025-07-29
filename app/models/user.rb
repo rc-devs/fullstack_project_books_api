@@ -3,6 +3,7 @@ class User < ApplicationRecord
 
   # validations
     validates :username, presence: true, uniqueness: :true
+    validates :password, length: { in: 5..15 }
 
   # associations
    has_many :books
