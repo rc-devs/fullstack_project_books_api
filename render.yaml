@@ -1,12 +1,12 @@
 databases:
-  - name: beta_blogs_evening
-    databaseName: beta_blogs_evening
-    user: beta_blogs_evening
+  - name: books_api
+    databaseName: books_api
+    user: books_api
     plan: free
 
 services:
   - type: web
-    name: beta_blogs_evening
+    name: books_api
     runtime: ruby
     plan: free
     buildCommand: './bin/render-build.sh'
@@ -14,7 +14,7 @@ services:
     envVars:
     - key: DATABASE_URL
       fromDatabase:
-        name: beta_blogs_evening
+        name: books_api
         property: connectionString
     - key: RAILS_MASTER_KEY
       sync: false
