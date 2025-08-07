@@ -1,4 +1,9 @@
 class Book < ApplicationRecord
+  # helpers
+  include Rails.application.routes.url_helpers
+
+
+  # attachments?
   has_one_attached :cover_image
 
   # validations
@@ -8,4 +13,9 @@ class Book < ApplicationRecord
 
   # associations
   belongs_to :user
+
+  # actions
+  def cover_image_url
+    rails_blob_url(self.cover_image, only_path: false) if self.cover_image.attached?
+  end
 end
