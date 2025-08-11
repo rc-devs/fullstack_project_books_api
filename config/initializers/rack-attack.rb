@@ -10,4 +10,8 @@ class Rack::Attack
       req.ip
     end
   end
+
+   throttle('authenticated_user', limit: 10, period: 1.minute) do |req|
+    req.env['warden'].user.id if req.env['warden'].user
+  end
 end
