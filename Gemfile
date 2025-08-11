@@ -38,6 +38,7 @@ gem "thruster", require: false
  gem "blueprinter"
  gem "bcrypt"
  gem "jwt"
+ gem "rack-attack"
 
  group :production, :test do
   gem "pg"
