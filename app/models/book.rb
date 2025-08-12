@@ -16,6 +16,10 @@ class Book < ApplicationRecord
 
   # actions
   def cover_image_url
-    rails_blob_url(self.cover_image, only_path: false) if self.cover_image.attached?
-  end
+    if self.cover_image.attached?
+      Rails.application.routes.url_helpers.rails_blob_url(self.cover_image, only_path: false)
+    else
+      Rails.root.join('app/assets/images/cover-not-available.jpg')  
+    end
+end
 end
