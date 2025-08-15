@@ -24,7 +24,7 @@ class Book < ApplicationRecord
       Rails.root.join('app/assets/images/cover-not-available.jpg')  
     end
   end
-  
+
   def broadcast_book_event
       Pusher.trigger('books-channel', 'book-changed', {
         id: self.id,
