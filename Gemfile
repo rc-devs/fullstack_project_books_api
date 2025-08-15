@@ -39,6 +39,7 @@ gem "thruster", require: false
  gem "bcrypt"
  gem "jwt"
  gem "rack-attack"
+ gem "pusher"
 
  group :production, :test do
   gem "pg"
