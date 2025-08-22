@@ -12,7 +12,7 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book = @current_user.books.new(book_params)
+    @book = BookService::Base.create_book(book_params)
 
     if @book.save
       render json: BookBlueprint.render(@book, view: :normal), status: :created
